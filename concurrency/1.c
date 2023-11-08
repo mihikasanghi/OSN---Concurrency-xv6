@@ -6,6 +6,8 @@
 #include <string.h>
 #include <time.h>
 
+//hiiiiiiiiiiiiiiiiii
+
 #define MAX_CUSTOMERS 100
 #define MAX_BARISTAS 100
 
