@@ -44,8 +44,7 @@ void *customer_function(void *param);
 
 int main()
 {
-    // Read input and initialize coffee_types and customers here...
-    // ...
+    // Read input and initialize coffee_types and customers
     scanf("%d %d %d", &B, &K, &N);
     for (int i = 0; i < K; ++i)
     {
@@ -98,7 +97,7 @@ int main()
     }
 
     // Print number of coffees wasted
-    // ...
+    printf("\n%d coffee wasted\n", wastedCoffees);
 
     return 0;
 }
@@ -127,6 +126,7 @@ void *customer_function(void *param)
         }
         int t2 = time(NULL);
         customer->delay = t2 - t1;
+        
         // Customer orders
         printf("\033[1;33mCustomer %d orders a %s\033[1;0m\n", customer->id, customer->coffee->name);
 

@@ -108,3 +108,41 @@ sys_waitx(void)
     return -1;
   return ret;
 }
+
+int sys_set_priority(void)
+{
+  int pid, priority;
+  argint(0, &pid);
+  argint(1, &priority);
+  if (priority >= 0 && priority <= 100)
+  {
+    int previousDP = -1;
+    struct proc *myproc;
+    for (myproc = proc; myproc < &proc[NPROC]; myproc++)
+    {
+      acquire(&myproc->lock);
+      if (myproc->pid == pid)
+      {
+        previousDP = myproc->DP;
+        myproc->SP = priority;
+        int RBI = 25;
+        int newPriority = RBI + priority;
+        if (newPriority > 100)
+          newPriority = 100;
+        myproc->DP = newPriority;
+        release(&myproc->lock);
+        break;
+      }
+      release(&myproc->lock);
+    }
+    if (previousDP > priority)
+    {
+      yield();
+    }
+    return previousDP;
+  }
+  else
+  {
+    return -1;
+  }
+}
