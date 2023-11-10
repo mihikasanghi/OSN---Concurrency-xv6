@@ -59,11 +59,10 @@ int main()
   int twtime = 0, trtime = 0;
   for (n = 0; n < NFORK; n++)
   {
-    pid = fork();         
-    for (int i = 0; i < 100; i += 2)  // set priority of all processes
-    {
-      set_priority(i, pid);   
-    }
+    pid = fork();
+
+    set_priority(pid, pid);
+
     if (pid < 0)
       break;
     if (pid == 0)

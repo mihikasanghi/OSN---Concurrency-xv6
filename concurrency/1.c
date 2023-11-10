@@ -37,6 +37,7 @@ int B, K, N; // Number of baristas, coffee types, and customers
 
 int barArr[MAX_CUSTOMERS] = {0};
 int wastedCoffees = 0;
+int totalDelay = 0;
 
 // Function declarations
 void *barista_function(void *param);
@@ -98,6 +99,7 @@ int main()
 
     // Print number of coffees wasted
     printf("\n%d coffee wasted\n", wastedCoffees);
+    printf("Average delay: %f\n", (float)totalDelay / N);
 
     return 0;
 }
@@ -126,6 +128,7 @@ void *customer_function(void *param)
         }
         int t2 = time(NULL);
         customer->delay = t2 - t1;
+        totalDelay += customer->delay;
         
         // Customer orders
         printf("\033[1;33mCustomer %d orders a %s\033[1;0m\n", customer->id, customer->coffee->name);

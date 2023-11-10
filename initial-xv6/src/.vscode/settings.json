@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "COW.C": "cpp",
+        "defs.h": "c",
+        "proc.h": "c"
+    }
+}
